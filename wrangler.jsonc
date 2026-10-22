@@ -1,0 +1,22 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "arch-studio",
+  "main": "worker/index.js",
+  "compatibility_date": "2026-10-01",
+  // 화면은 vite가 만든 dist를 그대로 올리고, /api/* 만 Worker 코드가 먼저 받는다.
+  "assets": {
+    "directory": "./dist",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*"]
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "arch-studio",
+      "database_id": "d9844cf4-67f3-419c-ab5b-62e755a7b15d",
+      "migrations_dir": "./migrations"
+    }
+  ],
+  "observability": { "enabled": true }
+}

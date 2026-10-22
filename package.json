@@ -1,0 +1,28 @@
+{
+  "name": "arch-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "start": "vite build && node server/index.js",
+    "serve": "node server/index.js",
+    "build": "vite build",
+    "dev:api": "node --watch server/index.js",
+    "dev:web": "vite",
+    "cf:seed": "node scripts/build-seed.mjs",
+    "cf:dev": "vite build && node scripts/build-seed.mjs && wrangler d1 migrations apply arch-studio --local && wrangler dev --port 8791",
+    "cf:deploy": "vite build && node scripts/build-seed.mjs && wrangler d1 migrations apply arch-studio --remote && wrangler deploy"
+  },
+  "dependencies": {
+    "@dagrejs/dagre": "^3.1.1",
+    "@xyflow/react": "^12.12.0",
+    "html-to-image": "^1.11.13",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^6.1.2",
+    "vite": "^8.3.4",
+    "wrangler": "^4.151.3"
+  }
+}
